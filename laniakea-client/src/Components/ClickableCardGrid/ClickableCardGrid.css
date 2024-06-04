@@ -1,0 +1,11 @@
+
+.clickable-card-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 50px;
+    width: 100vw;
+    height: 90%;
+    scale: 0.75;
+}

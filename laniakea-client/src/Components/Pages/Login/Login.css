@@ -1,0 +1,68 @@
+.login-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-image: url("https://i.imgur.com/gH9Oglk.gif");
+    background-size: cover;
+}
+
+
+.login-container {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    width: 50%;
+    background-color: #34143cb9;
+
+}
+
+
+.login-page-container {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 50%;
+}
+
+
+
+
+.pixel-input-group {
+    display: flex;
+    flex-direction: column; 
+    gap: 5px;
+    width: 100%;
+}
+
+.pixel-input {
+    background-color: #000; 
+    color: #fff; 
+    border: 2px solid #fff; 
+    padding: 8px;
+    font-family: 'Press Start 2P', sans-serif;
+    outline: none;
+}
+
+
+
+.pixel-input:hover, .pixel-button:hover {
+    background-color: #333; 
+    cursor: pointer;
+}
+
+

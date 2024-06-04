@@ -1,0 +1,20 @@
+.button-generic {
+    position: relative;
+    font-family: 'Press Start 2P', sans-serif;
+    background-color: transparent;
+    background-image: url('https://i.imgur.com/Mb1fCNw.png');
+    border: 0px solid transparent;
+    background-size: cover;
+    width: 128px;
+    height: 32px;
+    color: white;
+    filter: invert(20%);
+    transition: transform 0.3s ease;
+}
+
+
+.button-generic:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
