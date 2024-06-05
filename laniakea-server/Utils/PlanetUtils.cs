@@ -1,3 +1,5 @@
+using laniakea_server.Models.PlanetModels;
+
 namespace laniakea_server.Utils;
 
 public static class PlanetUtils
@@ -23,5 +25,12 @@ public static class PlanetUtils
     public static double jupitersToKg(double val)
     {
         return val * JUPITER_MASS;
+    }
+
+    public static string makePlanetQuery(PlanetInfoRequest planetInfoRequest)
+    {
+        // TODO: SUPPORT MORE QUERIES LATER
+        string baseApiRoute = "https://api.api-ninjas.com/v1/planets?name=" + planetInfoRequest.Name;
+        return baseApiRoute;
     }
 }
