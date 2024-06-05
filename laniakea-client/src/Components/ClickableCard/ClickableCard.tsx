@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './ClickableCard.css';
+import { useNavigate } from 'react-router-dom';
 interface ClickableCardProps {
     imageUrl: string;
     text: string;
@@ -8,8 +9,11 @@ interface ClickableCardProps {
 }
 
 const ClickableCard: React.FC<ClickableCardProps> = ({ imageUrl, text, redirectUrl }) => {
+
+    const navigate = useNavigate();
+
     const handleClick = () => {
-        window.location.href = redirectUrl;
+        navigate(redirectUrl);
     };
 
     return (
