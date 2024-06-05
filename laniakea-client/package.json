@@ -10,8 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/react-transition-group": "^4.4.10",
     "autoprefixer": "^10.4.19",
     "axios": "^1.7.2",
+    "framer-motion": "^11.2.10",
     "postcss": "^8.4.38",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

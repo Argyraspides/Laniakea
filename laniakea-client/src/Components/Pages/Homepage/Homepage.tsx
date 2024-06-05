@@ -19,12 +19,12 @@ const Homepage: React.FC<Props> = () => {
         <ClickableCard
             imageUrl='https://i.imgur.com/GtZC05Z.png'
             text='A Walk Through Terra'
-            redirectUrl='/terra'
+            redirectUrl='/planet/earth'
         />,
         <ClickableCard
             imageUrl='https://i.imgur.com/yYB3SbD.png'
             text='A Stroll Through Luna'
-            redirectUrl='/luna'
+            redirectUrl='/planet/moon'
         />
     ]
 
@@ -63,7 +63,7 @@ const Homepage: React.FC<Props> = () => {
                     </div>
                 }
 
-                {/* TODO: If the user is logged in, show a profile dropdown where the login buttons used to be */}
+                {/* If the user is logged in, show a profile dropdown where */}
                 {
                     hasToken &&
                     <div></div>
