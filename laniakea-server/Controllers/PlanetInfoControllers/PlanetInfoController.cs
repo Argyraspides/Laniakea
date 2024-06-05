@@ -31,11 +31,8 @@ namespace laniakea_server.Controllers.PlanetInfoControllers
 
             if (_memoryCache.TryGetValue(apiQueryString, out string cachedData))
             {
-                Console.WriteLine("Query already done before: retreiving cached data");
                 return Ok(cachedData);
             }
-
-            Console.WriteLine("Brand new query, doing fresh fetch");
 
             using (HttpClient client = new HttpClient())
             {
