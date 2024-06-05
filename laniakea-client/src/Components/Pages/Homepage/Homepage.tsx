@@ -17,15 +17,41 @@ const Homepage: React.FC<Props> = () => {
 
     const cards = [
         <ClickableCard
-            imageUrl='https://i.imgur.com/GtZC05Z.png'
-            text='A Walk Through Terra'
+            imageUrl='https://i.imgur.com/EZzzd2a.png'
+            imageSize={0.5}
+            text='Mercury'
+            redirectUrl='/planet/mercury'
+        />,
+        <ClickableCard
+            imageUrl='https://i.imgur.com/6krglDx.png'
+            imageSize={0.7}
+            text='Venus'
+            redirectUrl='/planet/venus'
+        />,
+        <ClickableCard
+            imageUrl='https://i.imgur.com/JcQRUqt.png'
+            imageSize={0.7}
+            text='Earth'
             redirectUrl='/planet/earth'
         />,
         <ClickableCard
-            imageUrl='https://i.imgur.com/yYB3SbD.png'
-            text='A Stroll Through Luna'
+            imageUrl='https://i.imgur.com/yYB3SbD.png?1'
+            imageSize={0.3}
+            text='Moon'
             redirectUrl='/planet/moon'
-        />
+        />,
+        <ClickableCard
+            imageUrl='https://i.imgur.com/mWByLjp.png'
+            imageSize={0.6}
+            text='Mars'
+            redirectUrl='/planet/mars'
+        />,
+        <ClickableCard
+            imageUrl='https://i.imgur.com/Rh5vs7M.png?1'
+            imageSize={1.5}
+            text='Saturn'
+            redirectUrl='/planet/saturn'
+        />,
     ]
 
     const handleLoginClick = () => {

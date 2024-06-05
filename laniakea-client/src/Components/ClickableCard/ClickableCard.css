@@ -1,9 +1,7 @@
 
-.clickable-card-container {
-}
 
 .clickable-card-image {
-    max-width: 50%;
+    max-width: 75%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
@@ -11,7 +9,7 @@
 
 .clickable-card-image:hover {
     cursor: pointer;
-    transform: scale(1.05);
+    transform: scale(1.1);
     transition: transform 0.3s ease;
 }
 
