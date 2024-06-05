@@ -1,17 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Login.css';
 import Button from '../../Button/Button';
 import useLogin from '../../../Hooks/LoginHook';
+import { useNavigate } from 'react-router-dom';
 const Login: React.FC = () => {
 
 
     const [success, message, login] = useLogin();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = () => {
-        login(username, password);
+        login(username, password, '');
     };
+
+    useEffect(() => {
+        if (success) {
+            navigate('../');
+        }
+    }, [success]);
 
     return (
         <div className='login-page-container'>
@@ -41,7 +49,7 @@ const Login: React.FC = () => {
                     </div>
 
                     <Button label='Log In' onClick={handleSubmit} />
-                    {!success && <p style={{color: 'red'}}className="error-text pixel-text">Whoops! Wrong username or password!</p>}
+                    {!success && message.length > 0 && <p style={{color: 'red'}}className="error-text pixel-text">Whoops! {message}</p>}
                     {success && <p className="success-text pixel-text">&nbsp;</p>}
                 </form>
 

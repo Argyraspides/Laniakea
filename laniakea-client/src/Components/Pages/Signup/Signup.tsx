@@ -65,7 +65,7 @@ const Signup: React.FC = () => {
                         />
                     </div>
 
-                    <Button label='Log In' onClick={handleSubmit} />
+                    <Button label='Sign Up' onClick={handleSubmit} />
                     {!success && <p style={{color: 'red'}}className="error-text pixel-text">Whoops! {message}</p>}
                     {success && <p className="success-text pixel-text">&nbsp;</p>}
                 </form>

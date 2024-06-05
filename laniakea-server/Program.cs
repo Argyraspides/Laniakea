@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddControllers();
 
-string originRule = "dev";
+string originRule = "laniakea";
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(originRule,
@@ -15,7 +15,8 @@ builder.Services.AddCors(options =>
         {
             builder.WithOrigins("http://localhost:5173")
                 .AllowAnyHeader()
-                .AllowAnyMethod();
+                .AllowAnyMethod()
+                .AllowCredentials();
         });
 });
 builder.Services.AddEndpointsApiExplorer();
@@ -23,10 +24,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
-
+ 
 
 var app = builder.Build();
-app.UseCors(originRule);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -35,6 +35,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors(originRule);
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.UseStaticFiles();
