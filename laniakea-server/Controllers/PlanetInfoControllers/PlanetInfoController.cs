@@ -1,31 +1,58 @@
 using laniakea_server.Models.PlanetModels;
 using laniakea_server.Utils;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 
-namespace laniakea_server.Controllers.PlanetInfoControllers;
+namespace laniakea_server.Controllers.PlanetInfoControllers
+{
 
     [Route("api/[controller]")]
     [ApiController]
-public class PlanetInfoController : ControllerBase
-{
-    [HttpPost("getPlanetInfo")]
-    public async Task<IActionResult> getPlanetInfo([FromBody] PlanetInfoRequest planetInfoRequest)
+    public class PlanetInfoController : ControllerBase
     {
-        // TODO: ADD EXCEPTION RESPONSES IN CASE THE API PROVIDER GOES OUT OF BUSINESS OR SMTH CHANGES LOL
-        var configuration = new ConfigurationBuilder()
-            .AddEnvironmentVariables()
-            .Build();
-        string apiKey = configuration["PLANET_KEY"];
-        string apiReponse = "";
 
-        using (HttpClient client = new HttpClient())
+        private readonly IMemoryCache _memoryCache;
+
+        public PlanetInfoController(IMemoryCache memoryCache)
         {
-            client.DefaultRequestHeaders.Add("X-Api-Key", apiKey);
-            HttpResponseMessage resp = await client.GetAsync(PlanetUtils.makePlanetQuery(planetInfoRequest));
-            resp.EnsureSuccessStatusCode();
-            apiReponse = await resp.Content.ReadAsStringAsync();
+            _memoryCache = memoryCache;
         }
-        
-        return Ok(apiReponse);
+
+        [HttpPost("getPlanetInfo")]
+        public async Task<IActionResult> getPlanetInfo([FromBody] PlanetInfoRequest planetInfoRequest)
+        {
+            // TODO: ADD EXCEPTION RESPONSES IN CASE THE API PROVIDER GOES OUT OF BUSINESS OR SMTH CHANGES LOL
+            var configuration = new ConfigurationBuilder()
+                .AddEnvironmentVariables()
+                .Build();
+            string apiKey = configuration["PLANET_KEY"];
+            string apiReponse = "";
+            string apiQueryString = PlanetUtils.makePlanetQuery(planetInfoRequest);
+
+            if (_memoryCache.TryGetValue(apiQueryString, out string cachedData))
+            {
+                Console.WriteLine("Query already done before: retreiving cached data");
+                return Ok(cachedData);
+            }
+
+            Console.WriteLine("Brand new query, doing fresh fetch");
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Add("X-Api-Key", apiKey);
+                HttpResponseMessage resp = await client.GetAsync(apiQueryString);
+                resp.EnsureSuccessStatusCode();
+                apiReponse = await resp.Content.ReadAsStringAsync();
+            }
+
+            var cacheEntryOptions = new MemoryCacheEntryOptions
+            {
+                AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(3)
+            };
+            
+            _memoryCache.Set(apiQueryString, apiReponse, cacheEntryOptions);
+
+            return Ok(apiReponse);
+        }
     }
 }

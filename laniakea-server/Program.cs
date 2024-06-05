@@ -3,10 +3,13 @@ using UserAuthApi.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// Add services to the container
 builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddMemoryCache();
 
+// CORS policy
 string originRule = "laniakea";
 builder.Services.AddCors(options =>
 {
@@ -19,27 +22,27 @@ builder.Services.AddCors(options =>
                 .AllowCredentials();
         });
 });
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
+// Database context
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
- 
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-app.UseCors(originRule);
 app.UseHttpsRedirection();
-app.UseAuthorization();
 app.UseStaticFiles();
-app.UseRouting();
+
+app.UseRouting(); // Ensure UseRouting comes before UseCors and UseAuthorization
+app.UseCors(originRule);
+app.UseAuthorization();
+
 app.MapControllers();
 
 app.Run();

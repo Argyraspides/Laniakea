@@ -13,7 +13,6 @@ namespace laniakea_server.Controllers.AuthorizationControllers
     public class AuthController : ControllerBase
     {
         private readonly AppDbContext _context;
-        private readonly IConfigurationRoot _configuration;
 
         public AuthController(AppDbContext context)
         {
