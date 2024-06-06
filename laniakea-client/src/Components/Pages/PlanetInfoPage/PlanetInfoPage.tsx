@@ -2,6 +2,7 @@ import React, { useEffect, useReducer, useState } from 'react';
 import "./PlanetInfoPage.css"
 import { useParams } from 'react-router-dom';
 import PlanetInfo from '../../PlanetInfo/PlanetInfo';
+import { assetLinksFrontPage } from '../../../assetLinks';
 
 interface PlanetInfoPageProps {
 
@@ -10,11 +11,21 @@ interface PlanetInfoPageProps {
 const getPlanetImage = (planetName: string) => {
     switch (planetName) {
         case "earth":
-            return "https://i.imgur.com/GtZC05Z.png";
+            return assetLinksFrontPage.EARTH_FRONTPAGE;
         case "moon":
-            return "https://i.imgur.com/yYB3SbD.png";
+            return assetLinksFrontPage.MOON_FRONTPAGE;
+        case "mercury":
+            return assetLinksFrontPage.MERCURY_FRONTPAGE;
+        case "venus":
+            return assetLinksFrontPage.VENUS_FRONTPAGE;
+        case "mars":
+            return assetLinksFrontPage.MARS_FRONTPAGE;
+        case "jupiter":
+            return assetLinksFrontPage.JUPITER_FRONTPAGE;
+        case "saturn":
+            return assetLinksFrontPage.SATURN_FRONTPAGE;
         default:
-            return "https://i.imgur.com/GtZC05Z.png";
+            return "";
     }
 }
 

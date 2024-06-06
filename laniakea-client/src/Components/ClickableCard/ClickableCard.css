@@ -1,9 +1,10 @@
+.clickable-card-container {
 
+}
 
 .clickable-card-image {
     max-width: 75%;
-    height: 100%;
-    object-fit: cover;
+    max-height: 100%;
     transition: transform 0.3s ease;
 }
 
