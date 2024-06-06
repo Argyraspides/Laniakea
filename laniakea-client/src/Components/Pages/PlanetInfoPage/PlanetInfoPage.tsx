@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./PlanetInfoPage.css"
 import { useParams } from 'react-router-dom';
 import PlanetInfo from '../../PlanetInfo/PlanetInfo';

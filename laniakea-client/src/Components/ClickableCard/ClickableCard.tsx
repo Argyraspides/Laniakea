@@ -1,5 +1,3 @@
-import React, { useEffect } from 'react';
-
 import './ClickableCard.css';
 import { useNavigate } from 'react-router-dom';
 interface ClickableCardProps {
