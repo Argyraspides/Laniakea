@@ -1,8 +1,10 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./PlanetInfoPage.css"
 import { useParams } from 'react-router-dom';
-import PlanetInfo from '../../PlanetInfo/PlanetInfo';
-
+import PlanetInfoBar from '../../PlanetInfo/PlanetInfoBar';
+import { assetLinksFrontPage } from '../../../assetLinks';
+import usePlanetInfo from '../../../Hooks/PlanetInfoHook';
+import Button from '../../Button/Button';
 interface PlanetInfoPageProps {
 
 }
@@ -10,28 +12,45 @@ interface PlanetInfoPageProps {
 const getPlanetImage = (planetName: string) => {
     switch (planetName) {
         case "earth":
-            return "https://i.imgur.com/GtZC05Z.png";
+            return assetLinksFrontPage.EARTH_FRONTPAGE;
         case "moon":
-            return "https://i.imgur.com/yYB3SbD.png";
+            return assetLinksFrontPage.MOON_FRONTPAGE;
+        case "mercury":
+            return assetLinksFrontPage.MERCURY_FRONTPAGE;
+        case "venus":
+            return assetLinksFrontPage.VENUS_FRONTPAGE;
+        case "mars":
+            return assetLinksFrontPage.MARS_FRONTPAGE;
+        case "jupiter":
+            return assetLinksFrontPage.JUPITER_FRONTPAGE;
+        case "saturn":
+            return assetLinksFrontPage.SATURN_FRONTPAGE;
         default:
-            return "https://i.imgur.com/GtZC05Z.png";
+            return "";
     }
 }
 
 const PlanetInfoPage: React.FC<PlanetInfoPageProps> = () => {
 
+    const [success, message, getPlanetInfo] = usePlanetInfo();
     const { planetName } = useParams<{ planetName: string }>();
-    const [planetImage, setPlanetImage] = useState<string>("");
+    const [ planetImage, setPlanetImage] = useState<string>("");
 
     useEffect(() => {
         setPlanetImage(getPlanetImage(planetName as string));
+        getPlanetInfo(planetName as string);
     }, [planetName]);
 
 
+    useEffect(() => {
+    }, [message]);
+
+
+
     return (
-        <div className="planet-info-container">
-            <PlanetInfo name={planetName as string}></PlanetInfo>
-            <div className="planet-info-image">
+        <div className="planet-info-page-container">
+            <PlanetInfoBar {...message}></PlanetInfoBar>
+            <div className="planet-info-page-image">
                 <img src={planetImage} alt="planet" />
             </div>
         </div>

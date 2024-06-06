@@ -4,7 +4,9 @@ import ClickableCard from '../../ClickableCard/ClickableCard';
 import './Homepage.css';
 import ClickableCardGrid from '../../ClickableCardGrid/ClickableCardGrid';
 import Button from '../../Button/Button';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
+
+import { assetLinksFrontPage } from '../../../assetLinks';
 
 interface Props {
 }
@@ -17,15 +19,47 @@ const Homepage: React.FC<Props> = () => {
 
     const cards = [
         <ClickableCard
-            imageUrl='https://i.imgur.com/GtZC05Z.png'
-            text='A Walk Through Terra'
+            imageUrl={assetLinksFrontPage.MERCURY_FRONTPAGE}
+            imageSize={0.5}
+            text='Mercury'
+            redirectUrl='/planet/mercury'
+        />,
+        <ClickableCard
+            imageUrl={assetLinksFrontPage.VENUS_FRONTPAGE}
+            imageSize={0.7}
+            text='Venus'
+            redirectUrl='/planet/venus'
+        />,
+        <ClickableCard
+            imageUrl={assetLinksFrontPage.EARTH_FRONTPAGE}
+            imageSize={0.7}
+            text='Earth'
             redirectUrl='/planet/earth'
         />,
         <ClickableCard
-            imageUrl='https://i.imgur.com/yYB3SbD.png'
-            text='A Stroll Through Luna'
+            imageUrl={assetLinksFrontPage.MOON_FRONTPAGE}
+            imageSize={0.3}
+            text='Moon'
             redirectUrl='/planet/moon'
-        />
+        />,
+        <ClickableCard
+            imageUrl={assetLinksFrontPage.MARS_FRONTPAGE}
+            imageSize={0.6}
+            text='Mars'
+            redirectUrl='/planet/mars'
+        />,
+        <ClickableCard
+            imageUrl={assetLinksFrontPage.JUPITER_FRONTPAGE}
+            imageSize={1.0}
+            text='Jupiter'
+            redirectUrl='/planet/jupiter'
+        />,
+        <ClickableCard
+            imageUrl={assetLinksFrontPage.SATURN_FRONTPAGE}
+            imageSize={2.5}
+            text='Saturn'
+            redirectUrl='/planet/saturn'
+        />,
     ]
 
     const handleLoginClick = () => {
@@ -49,11 +83,8 @@ const Homepage: React.FC<Props> = () => {
         <div className='homepage-container'>
             <div className='homepage-content'>
 
-
                 {!hasToken && <WelcomeBar text="Welcome to Laniakea!" />}
                 {hasToken && <WelcomeBar text={`Welcome back to Laniakea, ${username}!`} />}
-
-
 
                 {
                     !hasToken &&
