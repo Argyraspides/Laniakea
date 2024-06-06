@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import "./PlanetInfoPage.css"
 import { useParams } from 'react-router-dom';
-import PlanetInfo from '../../PlanetInfo/PlanetInfo';
+import PlanetInfoBar from '../../PlanetInfo/PlanetInfoBar';
 import { assetLinksFrontPage } from '../../../assetLinks';
-
+import usePlanetInfo from '../../../Hooks/PlanetInfoHook';
+import Button from '../../Button/Button';
 interface PlanetInfoPageProps {
 
 }
@@ -31,18 +32,25 @@ const getPlanetImage = (planetName: string) => {
 
 const PlanetInfoPage: React.FC<PlanetInfoPageProps> = () => {
 
+    const [success, message, getPlanetInfo] = usePlanetInfo();
     const { planetName } = useParams<{ planetName: string }>();
-    const [planetImage, setPlanetImage] = useState<string>("");
+    const [ planetImage, setPlanetImage] = useState<string>("");
 
     useEffect(() => {
         setPlanetImage(getPlanetImage(planetName as string));
+        getPlanetInfo(planetName as string);
     }, [planetName]);
 
 
+    useEffect(() => {
+    }, [message]);
+
+
+
     return (
-        <div className="planet-info-container">
-            <PlanetInfo name={planetName as string}></PlanetInfo>
-            <div className="planet-info-image">
+        <div className="planet-info-page-container">
+            <PlanetInfoBar {...message}></PlanetInfoBar>
+            <div className="planet-info-page-image">
                 <img src={planetImage} alt="planet" />
             </div>
         </div>

@@ -1,20 +1,22 @@
-.planet-info-container {
+.planet-info-page-container {
     display: flex;
-    flex-direction: row;
     justify-content: center;
+    align-items: center;
     height: 100vh;
     width: 100vw;
     /* background-image: url("https://i.imgur.com/gH9Oglk.gif"); */
     background-image: url("https://i.imgur.com/gH9Oglk.gif");
     /* background-color: black; */
     background-size: cover;
+    z-index: -1;
 }
 
 
-.planet-info-image {
-    max-width: 100%;
-    max-height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+
+.planet-info-page-image {
+    width: 75%;
+    height: 100%;
+    background-color: #00000080;
     display: flex;
     flex-direction: column;
     justify-content: center;

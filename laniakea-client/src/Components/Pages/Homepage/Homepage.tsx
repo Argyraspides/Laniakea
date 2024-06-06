@@ -83,11 +83,8 @@ const Homepage: React.FC<Props> = () => {
         <div className='homepage-container'>
             <div className='homepage-content'>
 
-
                 {!hasToken && <WelcomeBar text="Welcome to Laniakea!" />}
                 {hasToken && <WelcomeBar text={`Welcome back to Laniakea, ${username}!`} />}
-
-
 
                 {
                     !hasToken &&
